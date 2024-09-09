@@ -1,5 +1,6 @@
 "use client";
 
+import { ApiAlert } from "@/components/ApiAlert";
 import { Heading } from "@/components/heading";
 import { AlertModal } from "@/components/modals/AlertModal";
 import { Button } from "@/components/ui/button";
@@ -13,6 +14,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
+import { useOrigin } from "@/hooks/useOrigin";
 import { formSchema } from "@/schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Store } from "@prisma/client";
@@ -36,6 +38,8 @@ export const SettingsForm = ({ initialData }: SettingsFormProps) => {
 
   const params = useParams();
   const router = useRouter();
+
+  const origin = useOrigin();
 
   const form = useForm<SettingsFormValues>({
     resolver: zodResolver(formSchema),
@@ -118,6 +122,12 @@ export const SettingsForm = ({ initialData }: SettingsFormProps) => {
           </Button>
         </form>
       </Form>
+      <Separator />
+      <ApiAlert
+        title="NEXT_PUBLIC_API_URL"
+        description={`${origin}/api/${params.storeId}`}
+        variant="public"
+      />
     </>
   );
 };
