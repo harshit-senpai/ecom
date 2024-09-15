@@ -85,9 +85,10 @@ export async function DELETE(
   req: Request,
   { params }: { params: { storeId: string; billboardId: string } }
 ) {
+  console.log(params)
   try {
     const { userId } = auth();
-
+    console.log(params.billboardId, params.storeId);
     if (!userId) {
       return new NextResponse("Unauthenticated", { status: 401 });
     }

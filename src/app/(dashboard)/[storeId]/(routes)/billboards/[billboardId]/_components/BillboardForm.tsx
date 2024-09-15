@@ -70,6 +70,7 @@ export const BillboardForm = ({ initialData }: BillboardFormProps) => {
         );
       } else {
         await axios.post(`/api/stores/${params.storeId}/billboards`, data);
+        router.push(`/${params.storeId}/billboards`);
       }
       router.refresh();
       router.push(`/${params.storeId}/billboards`);
@@ -84,9 +85,11 @@ export const BillboardForm = ({ initialData }: BillboardFormProps) => {
   const onDelete = async () => {
     try {
       setIsLoading(true);
-      await axios.delete(`/api/stores/${params.storeId}/billboards`);
+      await axios.delete(
+        `/api/stores/${params.storeId}/billboards/${params.billboardId}`
+      );
       router.refresh();
-      router.push("/");
+      router.push(`/${params.storeId}/billboards`);
       toast.success("Billboard deleted successfully");
     } catch (error) {
       toast.error(
