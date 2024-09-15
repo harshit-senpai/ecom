@@ -14,13 +14,13 @@ import { useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import axios from "axios";
 import { AlertModal } from "../../../../../../components/modals/AlertModal";
-import { SizeColumn } from "./Columns";
+import { ColorColumn } from "./Columns";
 
-interface SizeCellActionProps {
-  data: SizeColumn;
+interface ColorCellActionProps {
+  data: ColorColumn;
 }
 
-export const SizeCellAction = ({ data }: SizeCellActionProps) => {
+export const ColorCellAction = ({ data }: ColorCellActionProps) => {
   const router = useRouter();
   const params = useParams();
 
@@ -29,7 +29,7 @@ export const SizeCellAction = ({ data }: SizeCellActionProps) => {
 
   const onClick = (id: string) => {
     navigator.clipboard.writeText(id);
-    toast.success("Size ID copied to clipboard.");
+    toast.success("Color ID copied to clipboard.");
   };
 
   const onDelete = async () => {
@@ -37,13 +37,13 @@ export const SizeCellAction = ({ data }: SizeCellActionProps) => {
       console.log(data.id)
       setIsLoading(true);
       console.log(data.id);
-      await axios.delete(`/api/stores/${params.storeId}/sizes/${data.id}`);
+      await axios.delete(`/api/stores/${params.storeId}/colors/${data.id}`);
       router.refresh();
-      router.push(`/${params.storeId}/sizes`);
-      toast.success("Size deleted successfully");
+      router.push(`/${params.storeId}/colors`);
+      toast.success("Color deleted successfully");
     } catch (error) {
       toast.error(
-        "Make sure you removed all categories using this billboard first."
+        "Make sure you removed all products using this Color first."
       );
     } finally {
       setIsLoading(false);
@@ -73,7 +73,7 @@ export const SizeCellAction = ({ data }: SizeCellActionProps) => {
           </DropdownMenuItem>
           <DropdownMenuItem
             onClick={() => {
-              router.push(`/${params.storeId}/sizes/${data.id}`);
+              router.push(`/${params.storeId}/colors/${data.id}`);
             }}
           >
             <Edit className="mr-2 h-4 w-4" />
