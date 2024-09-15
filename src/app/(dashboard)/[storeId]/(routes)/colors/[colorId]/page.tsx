@@ -1,20 +1,20 @@
 import { db } from "@/lib/db";
-import { SizeForm } from "./_components/SizeForm";
+import { ColorForm } from "./_components/ColorForm";
 
-const SizePage = async ({ params }: { params: { sizeId: string } }) => {
-  const sizes = await db.size.findUnique({
+const ColorPage = async ({ params }: { params: { colorId: string } }) => {
+  const colors = await db.color.findUnique({
     where: {
-      id: params.sizeId,
+      id: params.colorId,
     },
   });
 
   return (
     <div className="flex-col">
       <div className="flex-1 space-y-4 p-8 pt-6">
-        <SizeForm initialData={sizes} />
+        <ColorForm initialData={colors} />
       </div>
     </div>
   );
 };
 
-export default SizePage;
+export default ColorPage;

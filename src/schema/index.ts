@@ -23,3 +23,10 @@ export const sizeSchema = z.object({
   name: z.string().min(3, { message: "Name must be at least 3 characters" }),
   value: z.string().min(1),
 });
+
+export const colorSchema = z.object({
+  name: z.string().min(3, { message: "Name must be at least 3 characters" }),
+  value: z.string().min(4).regex(/^#/, {
+    message: "String must be a valid hex code",
+  }),
+});
