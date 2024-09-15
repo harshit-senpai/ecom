@@ -15,9 +15,10 @@ import { useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import axios from "axios";
 import { AlertModal } from "./modals/AlertModal";
+import { CategoryColumn } from "@/app/(dashboard)/[storeId]/(routes)/categories/_components/Columns";
 
 interface CellActionProps {
-  data: BillboardColumn;
+  data: CategoryColumn;
 }
 
 export const CellAction = ({ data }: CellActionProps) => {
