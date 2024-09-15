@@ -1,6 +1,5 @@
 "use client";
 
-import { BillboardColumn } from "@/app/(dashboard)/[storeId]/(routes)/billboards/_components/Columns";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -15,12 +14,13 @@ import { useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import axios from "axios";
 import { AlertModal } from "../../../../../../components/modals/AlertModal";
+import { SizeColumn } from "./Columns";
 
-interface BillboardCellActionProps {
-  data: BillboardColumn;
+interface SizeCellActionProps {
+  data: SizeColumn;
 }
 
-export const BillboardCellAction = ({ data }: BillboardCellActionProps) => {
+export const SizeCellAction = ({ data }: SizeCellActionProps) => {
   const router = useRouter();
   const params = useParams();
 
@@ -29,7 +29,7 @@ export const BillboardCellAction = ({ data }: BillboardCellActionProps) => {
 
   const onClick = (id: string) => {
     navigator.clipboard.writeText(id);
-    toast.success("Billboard ID copied to clipboard.");
+    toast.success("Size ID copied to clipboard.");
   };
 
   const onDelete = async () => {
@@ -37,10 +37,10 @@ export const BillboardCellAction = ({ data }: BillboardCellActionProps) => {
       console.log(data.id)
       setIsLoading(true);
       console.log(data.id);
-      await axios.delete(`/api/stores/${params.storeId}/billboards/${data.id}`);
+      await axios.delete(`/api/stores/${params.storeId}/sizes/${data.id}`);
       router.refresh();
-      router.push(`/${params.storeId}/billboards`);
-      toast.success("Billboard deleted successfully");
+      router.push(`/${params.storeId}/sizes`);
+      toast.success("Size deleted successfully");
     } catch (error) {
       toast.error(
         "Make sure you removed all categories using this billboard first."
@@ -73,7 +73,7 @@ export const BillboardCellAction = ({ data }: BillboardCellActionProps) => {
           </DropdownMenuItem>
           <DropdownMenuItem
             onClick={() => {
-              router.push(`/${params.storeId}/billboards/${data.id}`);
+              router.push(`/${params.storeId}/sizes/${data.id}`);
             }}
           >
             <Edit className="mr-2 h-4 w-4" />

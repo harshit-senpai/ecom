@@ -1,7 +1,6 @@
 "use client";
 
 import { Heading } from "@/components/heading";
-import { ImageUpload } from "@/components/ImageUpload";
 import { AlertModal } from "@/components/modals/AlertModal";
 import { Button } from "@/components/ui/button";
 import {
@@ -14,8 +13,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
-import { useOrigin } from "@/hooks/useOrigin";
-import { billboardSchema, sizeSchema } from "@/schema";
+import { sizeSchema } from "@/schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Size } from "@prisma/client";
 import axios from "axios";
@@ -47,7 +45,7 @@ export const SizeForm = ({ initialData }: SizeFormProps) => {
   const action = initialData ? "Save changes" : "Create";
 
   const form = useForm<SizeFormValues>({
-    resolver: zodResolver(billboardSchema),
+    resolver: zodResolver(sizeSchema),
     defaultValues: initialData || {
       name: "",
       value: "",
@@ -86,9 +84,7 @@ export const SizeForm = ({ initialData }: SizeFormProps) => {
       router.push(`/${params.storeId}/sizes`);
       toast.success("Sizes deleted successfully");
     } catch (error) {
-      toast.error(
-        "Make sure you removed all products using this size first."
-      );
+      toast.error("Make sure you removed all products using this size first.");
     } finally {
       setIsLoading(false);
     }
