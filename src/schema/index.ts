@@ -1,3 +1,4 @@
+import { Value } from "@radix-ui/react-select";
 import { z } from "zod";
 
 export const formSchema = z.object({
@@ -16,4 +17,9 @@ export const categorySchema = z.object({
   billboardId: z
     .string()
     .min(3, { message: "Billboard ID must be at least 3 characters" }),
+});
+
+export const sizeSchema = z.object({
+  name: z.string().min(3, { message: "Name must be at least 3 characters" }),
+  value: z.string().min(1),
 });
