@@ -7,21 +7,20 @@ import {
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuTrigger,
-} from "./ui/dropdown-menu";
-import { Button } from "./ui/button";
+} from "../../../../../../components/ui/dropdown-menu";
+import { Button } from "../../../../../../components/ui/button";
 import { Copy, Edit, MoreHorizontal, Trash } from "lucide-react";
 import { toast } from "sonner";
 import { useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import axios from "axios";
-import { AlertModal } from "./modals/AlertModal";
-import { CategoryColumn } from "@/app/(dashboard)/[storeId]/(routes)/categories/_components/Columns";
+import { AlertModal } from "../../../../../../components/modals/AlertModal";
 
-interface CellActionProps {
-  data: CategoryColumn;
+interface BillboardCellActionProps {
+  data: BillboardColumn;
 }
 
-export const CellAction = ({ data }: CellActionProps) => {
+export const BillboardCellAction = ({ data }: BillboardCellActionProps) => {
   const router = useRouter();
   const params = useParams();
 

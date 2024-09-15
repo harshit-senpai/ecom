@@ -1,7 +1,7 @@
 "use client";
 
-import { CellAction } from "@/components/CellAction";
 import { ColumnDef } from "@tanstack/react-table";
+import { CategoryCellAction } from "./CategoryCellAction";
 
 export type CategoryColumn = {
   id: string;
@@ -26,6 +26,6 @@ export const columns: ColumnDef<CategoryColumn>[] = [
   },
   {
     id: "actions",
-    cell: ({ row }) => <CellAction data={row.original} />,
+    cell: ({ row }) => <CategoryCellAction data={row.original} />,
   },
 ];
