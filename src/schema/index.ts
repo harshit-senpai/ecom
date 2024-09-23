@@ -30,3 +30,18 @@ export const colorSchema = z.object({
     message: "String must be a valid hex code",
   }),
 });
+
+export const productSchema = z.object({
+  name: z.string().min(1),
+  images: z.array(
+    z.object({
+      url: z.string().url("Invalid image URL"),
+    })
+  ),
+  price: z.coerce.number().min(1),
+  categoryId: z.string().min(1),
+  colorId: z.string().min(1),
+  sizeId: z.string().min(1),
+  isFeatured: z.boolean().default(false).optional(),
+  isArchived: z.boolean().default(false).optional(),
+});
